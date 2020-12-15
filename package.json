@@ -1,0 +1,22 @@
+{
+  "name": "advent-of-code",
+  "version": "0.0.1",
+  "description": "Repository for Advent of Code Working Files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hieronymous-bean/advent-of-code.git"
+  },
+  "author": "Jeffrey Brown",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hieronymous-bean/advent-of-code/issues"
+  },
+  "homepage": "https://github.com/hieronymous-bean/advent-of-code#readme",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
