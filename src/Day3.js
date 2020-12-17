@@ -5,65 +5,40 @@ require.extensions['.txt'] = function (module, filename) {
 
 const data = require("../data/Day3.txt");
 const dataRows = data.split('\n');
-const movement = [3, 1];
-const startPosition = [3, 1];
+const movement = {'x': 5,'y': 1};
+const startPosition = {'x': 0,'y': 0};
 
-
-function treeCounter(data, movement, start) {
-	var rowCount = 0;
-	var columnCount = 0; // needs to restart when it hits 31 //
-
-	var currentPosition = start;
-	var movementA = movement[0];
-	var movementB = movement[1];
-
-	var mapMatrix = mapToMatrix(data);
-	
-	for (i = 0; i < mapMatrix.map.length; i++) {
-		currentA = currentPosition[0];
-		currentB = currentPosition[1];
-
-		newA = currentA + movementA;
-		newB = currentB + movementB;
-
-		currentPosition = [newA, newB];
-		
-		/*
-		console.log('Row: ' + rowCount + '\nStart: ' + start + '\nMovement: ' + movement + '\nResult: ' + currentPosition )
-		*/
-		
-	}
-};
 
 
 
 function treeCounterNew(data, movement, start) {
-	var rowCount = 0;
-	var columnCount = 0; // needs to restart when it hits 31 //
-
+	var hitCounts = 0;
 	var currentPosition = start;
-	var movementA = movement[0];
-	var movementB = movement[1];
 
 	var mapMatrix = mapToMatrix(data);
+	var treesArray = mapMatrix.trees;
 	
 	for (i = 0; i < mapMatrix.map.length; i++) {
-		currentA = currentPosition[0];
-		currentB = currentPosition[1];
 
+		currentPosition.x = currentPosition.x + movement.x;
+		currentPosition.y = currentPosition.y + movement.y;
 
-		newA = currentA + movementA;
-		newB = currentB + movementB;
-
-		if (newB > 31) {
-			newB = newB - 32;
+		if (currentPosition.x > 30) {
+			currentPosition.x = (currentPosition.x % 30) - 1;
 		}
 
-		currentPosition = [newA, newB];
+		for (ib = 0; ib < treesArray.length; ib++) {
+			if (currentPosition.x == treesArray[ib].x && currentPosition.y == treesArray[ib].y) {
+				console.log(currentPosition.x + ' ' + currentPosition.y + '\n' + treesArray[ib].x + ' ' + treesArray[ib].y);
+				hitCounts++;
+			}
+
+		}
 		
-		console.log('Row: ' + rowCount + '\nStart: ' + start + '\nMovement: ' + movement + '\nResult: ' + currentPosition )
-	
 	}
+
+	console.log(treesArray);
+	console.log(hitCounts);
 
 };
 
@@ -82,11 +57,11 @@ function mapToMatrix(mapRowsArray){
 
 			if (currentRow[ib] == '#') {
 
-				trees.push([ia, ib]);
+				trees.push({'x': ib, 'y': ia});
 
 			}
 
-			row.push([ia, ib]);
+			row.push([ib, ia]);
 		}
 
 		map.push([row]);
