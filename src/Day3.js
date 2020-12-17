@@ -5,52 +5,67 @@ require.extensions['.txt'] = function (module, filename) {
 
 const data = require("../data/Day3.txt");
 const dataRows = data.split('\n');
+const movement = [3, 1];
+const startPosition = [3, 1];
 
-const movement = [[3, -1]];
 
-function treeCounter(data, movement) {
+function treeCounter(data, movement, start) {
+	var rowCount = 0;
+	var columnCount = 0; // needs to restart when it hits 31 //
+
+	var currentPosition = start;
+	var movementA = movement[0];
+	var movementB = movement[1];
+
+	var mapMatrix = mapToMatrix(data);
 	
+	for (i = 0; i < mapMatrix.map.length; i++) {
+		currentA = currentPosition[0];
+		currentB = currentPosition[1];
+
+		newA = currentA + movementA;
+		newB = currentB + movementB;
+
+		currentPosition = [newA, newB];
+		
+		/*
+		console.log('Row: ' + rowCount + '\nStart: ' + start + '\nMovement: ' + movement + '\nResult: ' + currentPosition )
+		*/
+		
+	}
+
 };
 
 
-// Process Map //
-function toArray(data) {
-	var dataArray = [];
-
-	for (i = 0; i < dataRow.length; i++) {
-    	
-
-    }
-
-};
 
 
+// Convert Map into Matrix Coords //
 function mapToMatrix(mapRowsArray){
-	var rows = 0;
-	var columns = 0;
+	let rows = 0;
+	let columns = 0;
+	var trees = [];
 	var map = [];
 
 	for (ia = 0; ia < mapRowsArray.length; ia++) {
 		let currentRow = mapRowsArray[ia];
-		
+		let row = [];
 		for (ib = 0; ib < currentRow.length; ib++) {
 
 			if (currentRow[ib] == '#') {
 
-				ic = 1;
+				trees.push([ia, ib]);
 
 			}
 
-			else {
-
-				ic = 0;
-			}
-
-			map.push([ia, ib, ic]);
+			row.push([ia, ib]);
 		}
 
+		map.push([row]);
+
 	};
-	return map;
+
+	console.log(trees[0]);
+	return {map, trees};
 };
 
-mapToMatrix(dataRows);
+treeCounter(dataRows, movement, startPosition);
