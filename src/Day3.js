@@ -33,10 +33,39 @@ function treeCounter(data, movement, start) {
 		*/
 		
 	}
-
 };
 
 
+
+function treeCounterNew(data, movement, start) {
+	var rowCount = 0;
+	var columnCount = 0; // needs to restart when it hits 31 //
+
+	var currentPosition = start;
+	var movementA = movement[0];
+	var movementB = movement[1];
+
+	var mapMatrix = mapToMatrix(data);
+	
+	for (i = 0; i < mapMatrix.map.length; i++) {
+		currentA = currentPosition[0];
+		currentB = currentPosition[1];
+
+
+		newA = currentA + movementA;
+		newB = currentB + movementB;
+
+		if (newB > 31) {
+			newB = newB - 32;
+		}
+
+		currentPosition = [newA, newB];
+		
+		console.log('Row: ' + rowCount + '\nStart: ' + start + '\nMovement: ' + movement + '\nResult: ' + currentPosition )
+	
+	}
+
+};
 
 
 // Convert Map into Matrix Coords //
@@ -64,8 +93,7 @@ function mapToMatrix(mapRowsArray){
 
 	};
 
-	console.log(trees[0]);
 	return {map, trees};
 };
 
-treeCounter(dataRows, movement, startPosition);
+treeCounterNew(dataRows, movement, startPosition);
