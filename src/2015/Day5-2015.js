@@ -84,54 +84,59 @@ function isNicePart1(input) {
 
 }
 
-function isNicePart2(input) {
-
-	// function hasTwoPairs(input) {
-	// 	let inputString = input;
-	// 	let pairCounts = 0;
-
-	// 	for ( id = 0; id < inputString.length; id++ ) {
-
-	// 		if ( inputString[id] == inputString[id + 1] ) {
-	// 			let capturedPair = inputString[id] + inputString[id + 1];
-				
-
-
-	// 		};
-
-	// 	};
-
-	// 	return false;
-
-	// };
-
-	function hasSplitRepeats(input) {
+function hasTwoPairs(input) {
 		let inputString = input;
-		let splitRepeats = 0;
+		let pairCounts = 0;
 
+		for ( id = 0; id < inputString.length; id++ ) {
+            var currentPair = inputString[id] + inputString[id + 1];
+            var stringFromPair = inputString.slice(id + 2);
+
+            if (stringFromPair.indexOf(currentPair) != -1 ) {
+                console.log(currentPair, id);
+                return true;
+            }
+
+		};
+
+		return false;
+
+	};
+
+	function hasSplitPair(input) {
+        let inputString = input;
+        let splitString = '';
+        let splitRepeats = 0;
+        
 		for ( ic = 0; ic < inputString.length; ic++ ) {
 
-			if (inputString.indexOf(naughtyStrings[ic]) != -1 ) {
-				return true;
+			if ( inputString[ic] == inputString[ic+2] ) {
+
+                splitString = inputString.substring(ic, ic+3);
+                
+                return true;
+
 			}
 
 		}
 
 		return false;
 
-	};
+    };
 
-	let niceCount = 0;
+function isNicePart2(input) {
+    console.log(input[1]);
+	
+
+    let niceCount = 0;
 
 	for (ix = 0; ix < input.length; ix++ ) {
-
-		vowels = containsVowels(input[ix]);
-		repeats = hasTwoInARow(input[ix]);
-		words = hasNaughtyStrings(input[ix]);
-
-		// console.log('Vowels: ', vowels, ' Repeats: ', repeats, ' Words: ', words);
-
-		if ( vowels && repeats && !words ) {
+        
+        repeats = hasSplitPair(input[ix]);
+        console.log(repeats);
+		pairs = hasTwoPairs(input[ix]);
+		
+		if ( pairs && repeats) {
 			niceCount++;
 		}
 
@@ -140,27 +145,6 @@ function isNicePart2(input) {
 	console.log(niceCount);
 
 }
+    
 
-
-function hasTwoPairs(input) {
-		let inputString = input;
-		let pairCounts = 0;
-
-		for ( id = 0; id < inputString.length; id++ ) {
-
-			if ( inputString[id] == inputString[id + 1] ) {
-				var capturedPair = inputString[id] + inputString[id + 1];
-				
-				
-
-			};
-
-			console.log(capturedPair);
-
-		};
-
-		return false;
-
-	};
-
-	hasTwoPairs('Jeffrefy');
+    isNicePart1(listRows);
