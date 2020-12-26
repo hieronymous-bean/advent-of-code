@@ -4,7 +4,7 @@ require.extensions['.txt'] = function (module, filename) {
 };
 
 var data = require("../../data/2015/Day5-2015.txt");
-var listRows = data.split('\r\n');
+var listRows = data.split('\n');
 
 function isNicePart1(input) {
 
@@ -147,4 +147,4 @@ function isNicePart2(input) {
 }
     
 
-    isNicePart1(listRows);
+isNicePart2(listRows);
