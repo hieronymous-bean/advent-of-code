@@ -9,11 +9,13 @@ var listRows = data.split('\n');
 function applyLightingConfig(input) {
 
     function findLightsArea(A, B, C, D) {
-        return ((C + 1) - A) * ((D + 1) - B);
+        return ((C - A) + 1) * ((D - B) + 1);
     };
 
     let lightsOn = 0;
+    let lightsOnArray = [];
     let lightsOff = 0;
+    let lightsOffArray = [];
 
     function turnLightsOn(input) {
         let parsed = input.split(' ');
@@ -24,12 +26,21 @@ function applyLightingConfig(input) {
             C = secondPair.split(',')[0],
             D = secondPair.split(',')[1];
 
-        console.log('Lights Area: ',findLightsArea(A, B, C, D));
-
+        lights = findLightsArea(A, B, C, D);
+        lightsOn = lightsOn + lights;
     };
 
     function turnLightsOff(input) {
+        let parsed = input.split(' ');
+        let firstPair = parsed[2];
+        let secondPair = parsed[4];
+        let A = firstPair.split(',')[0],
+            B = firstPair.split(',')[1],
+            C = secondPair.split(',')[0],
+            D = secondPair.split(',')[1];
 
+        lights = findLightsArea(A, B, C, D);
+        lightsOn = lightsOn + lights;
     };
 
     function toggleLights(input) {
@@ -55,5 +66,3 @@ function applyLightingConfig(input) {
 }
 
 applyLightingConfig(listRows);
-
-// console.log(listRows[0]);
