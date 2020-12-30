@@ -11,7 +11,7 @@ function applyLightingConfig(input) {
     function findLightsArea(A, B, C, D) {
         return ((C - A) + 1) * ((D - B) + 1);
     };
-
+[4,3]  [8, 4]
     let lightsOn = 0;
     let lightsOnArray = [];
     let lightsOff = 0;
