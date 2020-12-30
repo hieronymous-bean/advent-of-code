@@ -11,7 +11,7 @@ function applyLightingConfig(input) {
     function findLightsArea(A, B, C, D) {
         return ((C - A) + 1) * ((D - B) + 1);
     };
-[4,3]  [8, 4]
+
     let lightsOn = 0;
     let lightsOnArray = [];
     let lightsOff = 0;
@@ -28,6 +28,7 @@ function applyLightingConfig(input) {
 
         lights = findLightsArea(A, B, C, D);
         lightsOn = lightsOn + lights;
+        console.log(lightsOn);
     };
 
     function turnLightsOff(input) {
@@ -40,7 +41,9 @@ function applyLightingConfig(input) {
             D = secondPair.split(',')[1];
 
         lights = findLightsArea(A, B, C, D);
-        lightsOn = lightsOn + lights;
+        lightsOff = lightsOff + lights;
+        lightsOn = lightsOn - lightsOff;
+        console.log(lightsOn);
     };
 
     function toggleLights(input) {
@@ -48,21 +51,17 @@ function applyLightingConfig(input) {
     };
 
     for ( ia = 0; ia < input.length; ia++ ) {
-        console.log(input[ia].substring(0, 5));
         if (input[ia].substring(0,7) == 'turn on') {
-            console.log('turn on');
-            turnLightsOn(input[ia]);
+            turnLightsOn(input[ia]);  
         }
         else if (input[ia].substring(0, 8) == 'turn off') {
-            console.log('turn off');
             turnLightsOff(input[ia]);
         }
         else if (input[ia].substring(0, 6) == 'toggle') {
-            console.log('toggle');
             toggleLights(input[ia]);
         };
     };
-
+console.log('Lights: ', lightsOn);
 }
 
 applyLightingConfig(listRows);
