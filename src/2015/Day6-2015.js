@@ -13,6 +13,7 @@ function applyLightingConfig(input) {
     };
 
     let lightsOn = 0;
+    let lightsArray = [];
     let lightsOnArray = [];
     let lightsOff = 0;
     let lightsOffArray = [];
@@ -28,6 +29,19 @@ function applyLightingConfig(input) {
 
         lights = findLightsArea(A, B, C, D);
         lightsOn = lightsOn + lights;
+        
+        for (iOnA = A; iOnA <= C; iOnA++) {
+
+            for (iOnB = B; iOnB <= D; iOnB++) {
+
+                if (lightsArray.indexOf[{'X': iOnA, 'Y': iOnB, 'Status': 'On'}] != -1) {
+                    lightsArray.push({'X': iOnA, 'Y': iOnB, 'Status': 'On'});
+                }
+
+            }
+
+        }
+        
     };
 
     function turnLightsOff(input) {
@@ -41,6 +55,18 @@ function applyLightingConfig(input) {
 
         lights = findLightsArea(A, B, C, D);
         lightsOn = lightsOn + lights;
+
+        for (iOffA = A; iOffA <= C; iOffA++) {
+
+            for (iOffB = B; iOffB <= D; iOffB++) {
+
+                if (lightsArray.indexOf[{'X': iOffA, 'Y': iOffB, 'Status': 'Off'}] != -1) {
+                    lightsArray.push({'X': iOffA, 'Y': iOffB, 'Status': 'Off'});
+                }
+
+            }
+
+        }
     };
 
     function toggleLights(input) {
@@ -63,6 +89,7 @@ function applyLightingConfig(input) {
         };
     };
 
+    console.log(lightsArray.length);
 }
 
 applyLightingConfig(listRows);
