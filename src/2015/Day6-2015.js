@@ -74,17 +74,13 @@ function applyLightingConfig(input) {
     };
 
     for ( ia = 0; ia < input.length; ia++ ) {
-        console.log(input[ia].substring(0, 5));
         if (input[ia].substring(0,7) == 'turn on') {
-            console.log('turn on');
-            turnLightsOn(input[ia]);
+            turnLightsOn(input[ia]);  
         }
         else if (input[ia].substring(0, 8) == 'turn off') {
-            console.log('turn off');
             turnLightsOff(input[ia]);
         }
         else if (input[ia].substring(0, 6) == 'toggle') {
-            console.log('toggle');
             toggleLights(input[ia]);
         };
     };
