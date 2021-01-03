@@ -14,9 +14,7 @@ function applyLightingConfig(input) {
 
     let lightsOn = 0;
     let lightsArray = [];
-    let lightsOnArray = [];
-    let lightsOff = 0;
-    let lightsOffArray = [];
+    let valueArray = [];
 
     function turnLightsOn(input) {
         let parsed = input.split(' ');
@@ -33,9 +31,19 @@ function applyLightingConfig(input) {
         for (iOnA = A; iOnA <= C; iOnA++) {
 
             for (iOnB = B; iOnB <= D; iOnB++) {
-
-                if (lightsArray.indexOf[{'X': iOnA, 'Y': iOnB, 'Status': 'On'}] != -1) {
-                    lightsArray.push({'X': iOnA, 'Y': iOnB, 'Status': 'On'});
+                let onValue = [iOnA, iOnB, true];
+                if (lightsArray.indexOf[[iOnA,iOnB,true]] != -1) {
+                    let foundIndex = lightsArray.indexOf[[iOnA,iOnB,true]];
+                    valueArray[foundIndex] = [iOnA,iOnB,true];
+                    
+                } 
+                else if (lightsArray.indexOf[[iOnA,iOnB,false]] != -1) {
+                    let foundIndex = lightsArray.indexOf[[iOnA,iOnB,false]];
+                    valueArray[foundIndex] = [iOnA,iOnB,true];
+                }
+                else {
+                    lightsArray.push([iOnA,iOnB]);
+                    valueArray.push([iOnA,iOnB,true])
                 }
 
             }
